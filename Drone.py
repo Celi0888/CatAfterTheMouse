@@ -2,7 +2,6 @@ import socket
 import sys
 import time
 
-
 class Drone(object):
     """ In this class der wil be 3 regions with commands and information that the drone will have.
         The 4 regions are StartUp, Commands, Mission Pad and Information Messages.
@@ -23,6 +22,7 @@ class Drone(object):
         self.locaddr = (self.Host, self.HostPort)
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.tello_address = ("192.168.10.1", 8889)
+        self.tello_stream_address = ("0.0.0.0", 11111)
         self.sock.bind(self.locaddr)
 
     # Connection
@@ -66,6 +66,15 @@ class Drone(object):
             "rc " + " " + a + " " + b + " " + c + " " + d
         )
         time.sleep(wait)
+    
+    # Turn on stream
+    def streamon(self, wait):
+        result = self.sendMessage("streamon")
+        time.sleep(wait)
+        
+    # Turn off stream
+    def streamoff(self, wait):
+        result = self.sendMessage("streamoff")
 
 #endregion
 #region Commands

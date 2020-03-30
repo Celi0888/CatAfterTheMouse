@@ -11,3 +11,6 @@ drone_1 = Drone.Drone('192.168.10.1', 8889)
 drone_1.printInfo(1)
 drone_1.connect(1)
 
+# 
+
+# Find the mouse missionpad
